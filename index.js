@@ -41,4 +41,3 @@ const ask = (question) => {
   process.exit();
 })();
 
-ask('Do you want to use SCSS?');
