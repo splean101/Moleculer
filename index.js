@@ -21,3 +21,24 @@ readStream.on('data', (chunk) => {
 process.stdin.on('data', (data) => {
   process.stdout.write(data + '\n');
 });
+
+const ask = (question) => {
+  return new Promise((resolve, reject) => {
+    process.stdout.write(question);
+    process.stdin.once('data', (data) => {
+      if (data !== 'y' || data !== 'n') {
+        process.stdout.write('Invalid response format');
+        process.exit();
+      }
+      resolve(data.toString().trim());
+    });
+  });
+};
+(async () => {
+  const scss = await ask('Do you want to use SCSS?');
+  const eslint = await ask('Do you want to use ESlint?');
+  process.stdout.write(`Your answers: ${scss} ${eslint}!`);
+  process.exit();
+})();
+
+ask('Do you want to use SCSS?');
