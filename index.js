@@ -17,3 +17,7 @@ readStream.on('data', (chunk) => {
   writeStream.write('Introductory fragment, copying is prohibited');
   writeStream.write(chunk);
 });
+
+process.stdin.on('data', (data) => {
+  process.stdout.write(data + '\n');
+});
